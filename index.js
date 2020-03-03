@@ -4,7 +4,15 @@
  */
 import React from 'react';
 import 'react-native-gesture-handler';
-import {AppRegistry} from 'react-native';
+import {
+  StyleSheet,
+  ActivityIndicator,
+  AppRegistry,
+  View,
+  Text,
+  Dimensions,
+} from 'react-native';
+
 import {name as appName} from './app.json';
 import Router from './config/router';
 import {Provider} from 'react-redux';
