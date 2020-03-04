@@ -27,18 +27,19 @@ const hideSpin = () => {
     payload: {isSpining: false},
   });
 };
+let timeId;
 const debounce = function(f, delay) {
-  let timeId;
-  return (function() {
+  return function() {
     clearTimeout(timeId);
     timeId = setTimeout(() => {
       f.apply(this, arguments);
     }, delay);
-  })();
+  };
 };
+const deShow = debounce(showSpin, 1000);
+const deHide = debounce(hideSpin, 1000);
 export const request = async function({type, url, data, option = {}}) {
-  console.log(router);
-  debounce(showSpin, 1000);
+  deShow();
   let axiosOption = {
     method: type,
     url: url,
@@ -58,6 +59,6 @@ export const request = async function({type, url, data, option = {}}) {
   } catch (error) {
     console.error(error);
   } finally {
-    debounce(hideSpin, 3000);
+    deHide();
   }
 };
