@@ -13,12 +13,32 @@ const instance = axios.create({
     return status >= 200 && status <= 500; // default
   },
 });
-export const request = async function({type, url, data, option = {}}) {
-  console.log(router);
+const showSpin = () => {
+  console.log('showSpin...');
   store.dispatch({
     type: Actions.GET_GLOBAL_SPIN_STATE,
     payload: {isSpining: true},
   });
+};
+const hideSpin = () => {
+  console.log('hideSpin...');
+  store.dispatch({
+    type: Actions.GET_GLOBAL_SPIN_STATE,
+    payload: {isSpining: false},
+  });
+};
+const debounce = function(f, delay) {
+  let timeId;
+  return (function() {
+    clearTimeout(timeId);
+    timeId = setTimeout(() => {
+      f.apply(this, arguments);
+    }, delay);
+  })();
+};
+export const request = async function({type, url, data, option = {}}) {
+  console.log(router);
+  debounce(showSpin, 1000);
   let axiosOption = {
     method: type,
     url: url,
@@ -29,10 +49,6 @@ export const request = async function({type, url, data, option = {}}) {
   }
   try {
     const response = await instance(axiosOption);
-    store.dispatch({
-      type: Actions.GET_GLOBAL_SPIN_STATE,
-      payload: {isSpining: false},
-    });
     const {status, statusText, data} = response;
     if (status !== 200) {
       return Promise.reject({status, statusText});
@@ -42,9 +58,6 @@ export const request = async function({type, url, data, option = {}}) {
   } catch (error) {
     console.error(error);
   } finally {
-    store.dispatch({
-      type: Actions.GET_GLOBAL_SPIN_STATE,
-      payload: {isSpining: false},
-    });
+    debounce(hideSpin, 3000);
   }
 };

@@ -22,6 +22,38 @@ export function* getComment(payload) {
         timeout: 0,
       },
     });
+    yield call(request, {
+      type: 'get',
+      url: 'example/query',
+      data: {},
+      option: {
+        timeout: 0,
+      },
+    });
+    yield call(request, {
+      type: 'get',
+      url: 'example/query',
+      data: {},
+      option: {
+        timeout: 0,
+      },
+    });
+    yield call(request, {
+      type: 'get',
+      url: 'example/query',
+      data: {},
+      option: {
+        timeout: 0,
+      },
+    });
+    yield call(request, {
+      type: 'get',
+      url: 'example/query',
+      data: {},
+      option: {
+        timeout: 0,
+      },
+    });
     console.log(data);
     // const comments = ["This is one", "This is two"];
     const personInfo = {
