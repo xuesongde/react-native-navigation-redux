@@ -36,8 +36,8 @@ const debounce = function(f, delay) {
     }, delay);
   };
 };
-const deShow = debounce(showSpin, 1000);
-const deHide = debounce(hideSpin, 1000);
+const deShow = debounce(showSpin, 0);
+const deHide = debounce(hideSpin, 10);
 export const request = async function({type, url, data, option = {}}) {
   deShow();
   let axiosOption = {
