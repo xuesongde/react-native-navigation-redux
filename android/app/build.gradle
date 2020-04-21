@@ -149,6 +149,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('xsd.keystore')
+            storePassword '888888'
+            keyAlias 'xsd'
+            keyPassword '888888'
+        }
     }
     buildTypes {
         debug {
