@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["plugin:prettier/recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    /**
+    "always" enforces braces around the function body
+    "as-needed" enforces no braces where they can be omitted (default)
+    "never" enforces no braces around the function body (constrains arrow functions to the role of returning an expression)
+    */
+    "arrow-body-style": ["error", "as-needed"],
+    /**
+    "properties": "always" (default) enforces camelcase style for property names
+    "properties": "never" does not check property names
+    "ignoreDestructuring": false (default) enforces camelcase style for destructured identifiers
+    "ignoreDestructuring": true does not check destructured identifiers (but still checks any use of those identifiers later in the code)
+    "ignoreImports": false (default) enforces camelcase style for ES2015 imports
+    "ignoreImports": true does not check ES2015 imports (but still checks any use of the imports later in the code except function arguments)
+    allow (string[]) list of properties to accept. Accept regex.
+    */
+    "camelcase": ["error", "never"],
+    "no-param-reassign": ["error", {
+      "props": false
+    }],
+    // "allowForLoopAfterthoughts": true allows unary operators ++ and -- in the afterthought (final expression) of a for loop.
+    "allowForLoopAfterthoughts": ["error", {
+      "allowForLoopAfterthoughts": true
+    }],
+    "prefer-template": ["error"],
+    "no-use-before-define": ["error", {
+      "functions": true,
+      "classes": true
+    }]
+  }
+}
